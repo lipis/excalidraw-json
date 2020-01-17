@@ -22,11 +22,9 @@ class DrawingCreateAPI(flask_restful.Resource):
   def post(self, drawing_hash):
     drawing_db = model.Drawing.get_by('hash', drawing_hash)
     if drawing_db:
-      return flask.jsonify(drawing_db.json)
+      return flask.redirect(flask.url_for('api.hash', drawing_hash=drawing_hash))
     try:
       drawing_json = json.loads(flask.request.data)
-      import logging
-      logging.info('########################## %r' % flask.request.data)
       m = hashlib.md5()
       m.update(str(drawing_json))
       if m.hexdigest() != drawing_hash:
