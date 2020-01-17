@@ -3,13 +3,11 @@
 # block header
   <div class="jumbotron">
     <div class="container text-center">
-      <img src="/p/img/diagram.png" height="96" usemap="#diagram">
-
-      <map name="diagram">
-        <area shape="rect" coords="0,16,200,88" href="https://www.excalidraw.com" title="Excalidraw">
-        <area shape="rect" coords="380,16,582,84" href="{{request.url}}" title="{{config.CONFIG_DB.brand_name}}">
-      </map>
-
+      <div class="image">
+        <img src="/p/img/diagram.png">
+        <a title="Excalidraw" href="https://www.excalidraw.com" style="top: 13%; left: 0%; width: 34%; height: 79%;"></a>
+        <a title="{{config.CONFIG_DB.brand_name}}" href="{{request.url}}" style="top: 13%; left: 65%; width: 34%; height: 76%;"></a>
+      </div>
       <h1>{{config.CONFIG_DB.brand_name}}</h1>
       <p class="lead">Use it with care! If you have no idea what it is, it's not for you.</p>
       <p class="lead">Get <a href="https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi?hl=en">RestMan</a> in Chrome to test it.</p>
