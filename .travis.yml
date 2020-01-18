@@ -1,13 +1,13 @@
 language: python
 
 python:
-  - '2.7.15'
+  - "2.7.15"
 
 cache:
   pip: true
   yarn: true
   directories:
-    - '$HOME/google-cloud-sdk/'
+    - "$HOME/google-cloud-sdk/"
     - node_modules
 
 notifications:

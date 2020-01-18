@@ -33,7 +33,8 @@ class DrawingCreateAPI(flask_restful.Resource):
       helpers.make_not_found_exception('Not valid JSON')
 
     return flask.jsonify({
-      'json': flask.url_for('api.hash', drawing_hash=drawing_hash, _external=True)
+      'hash': drawing_hash,
+      'json': flask.url_for('api.hash', drawing_hash=drawing_hash, _external=True),
     })
 
 

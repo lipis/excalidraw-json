@@ -14,18 +14,18 @@ window.apiCall = function(method, url, params, data, callback) {
       delete params[key];
     }
   }
-  const separator = url.search('\\?') >= 0 ? '&' : '?';
+  const separator = url.search("\\?") >= 0 ? "&" : "?";
   $.ajax({
-    accepts: 'application/json',
-    contentType: 'application/json',
+    accepts: "application/json",
+    contentType: "application/json",
     data: data ? JSON.stringify(data) : void 0,
-    dataType: 'json',
+    dataType: "json",
     error(jqXHR, textStatus, errorThrown) {
       let error = {
-        error_code: 'ajax_error',
+        error_code: "ajax_error",
         error_thrown: errorThrown,
         jqXHR,
-        text_status: textStatus,
+        text_status: textStatus
       };
       try {
         if (jqXHR.responseText) {
@@ -34,22 +34,22 @@ window.apiCall = function(method, url, params, data, callback) {
       } catch (_error) {
         error = _error;
       }
-      LOG('apiCall error', error);
-      return typeof callback === 'function' ? callback(error) : void 0;
+      LOG("apiCall error", error);
+      return typeof callback === "function" ? callback(error) : void 0;
     },
     success(data_) {
-      if (data_.status === 'success') {
+      if (data_.status === "success") {
         let more = void 0;
         if (data_.next_url) {
           more = callback_ => apiCall(method, data_.next_url, {}, callback);
         }
-        return typeof callback === 'function'
+        return typeof callback === "function"
           ? callback(void 0, data_.result, more)
           : void 0;
       }
-      return typeof callback === 'function' ? callback(data) : void 0;
+      return typeof callback === "function" ? callback(data) : void 0;
     },
     type: method,
-    url: `${url}${separator}${$.param(params)}`,
+    url: `${url}${separator}${$.param(params)}`
   });
 };

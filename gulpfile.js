@@ -1,2 +1,2 @@
-require('coffeescript/register');
-require('./gulpfile.coffee');
+require("coffeescript/register");
+require("./gulpfile.coffee");
