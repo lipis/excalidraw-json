@@ -39,17 +39,17 @@ handlers:
     static_files: static/\1
     upload: static/(.*\.ttf)
     mime_type: font/ttf
-    expiration: "365d"
+    expiration: '365d'
 
   - url: /p/(.*\.woff2)
     static_files: static/\1
     upload: static/(.*\.woff2)
     mime_type: font/woff2
-    expiration: "365d"
+    expiration: '365d'
 
   - url: /p/
     static_dir: static/
-    expiration: "365d"
+    expiration: '365d'
 
   - url: /.*
     script: main.app
