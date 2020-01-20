@@ -23,7 +23,7 @@ class DrawingCreateAPI(flask_restful.Resource):
     try:
       drawing_json = json.loads(flask.request.data)
       m = hashlib.md5()
-      m.update(str(drawing_json))
+      m.update(json.dumps(drawing_json, indent=2, sort_keys=True))
       drawing_hash = m.hexdigest()
       drawing_db = model.Drawing.get_by('hash', drawing_hash)
       if not drawing_db:
@@ -33,16 +33,16 @@ class DrawingCreateAPI(flask_restful.Resource):
       helpers.make_not_found_exception('Not valid JSON')
 
     response = flask.make_response(flask.jsonify({
-      'hash': drawing_hash,
-      'json': flask.url_for('api.hash', drawing_hash=drawing_hash, _external=True),
+      'id': drawing_db.key.id(),
+      'json': flask.url_for('api.id', drawing_id=drawing_db.key.id(), _external=True),
     }))
     return response
 
 
-@api_v1.resource('/<string:drawing_hash>.json', endpoint='api.hash')
+@api_v1.resource('/<int:drawing_id>.json', endpoint='api.id')
 class DrawingHashAPI(flask_restful.Resource):
-  def get(self, drawing_hash):
-    drawing_db = model.Drawing.get_by('hash', drawing_hash)
+  def get(self, drawing_id):
+    drawing_db = model.Drawing.get_by_id(drawing_id)
     if not drawing_db:
-      helpers.make_not_found_exception('Drawing %s not found' % drawing_hash)
+      helpers.make_not_found_exception('Drawing %s not found' % drawing_id)
     return flask.jsonify(drawing_db.json)

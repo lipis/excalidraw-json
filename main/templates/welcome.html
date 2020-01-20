@@ -31,8 +31,8 @@
           <h3>Response</h3>
 <pre>
 {
-  "hash": "cf441c7b5846d0d234c411538b703079",
-  "json": "{{url_for('api.hash', drawing_hash='cf441c7b5846d0d234c411538b703079', _external=True)}}"
+  "id": "5646488461901824",
+  "json": "{{url_for('api.id', drawing_id='5646488461901824', _external=True)}}"
 }
 </pre>
         </div>
@@ -43,7 +43,7 @@
         <div class="panel-heading"><h3>GET</h3></div>
         <div class="panel-body">
           <p>Example endpoint URL</p>
-          <pre>{{request.url[:-1]}}{{url_for('api.hash', drawing_hash="cf441c7b5846d0d234c411538b703079")}}</pre>
+          <pre>{{request.url[:-1]}}{{url_for('api.id', drawing_id="5646488461901824")}}</pre>
 
           <h3>Response</h3>
           <p>Example <code>JSON</code> response. If the hash is found it will return the <code>JSON</code>. Otherwise <code>404</code>.</p>
