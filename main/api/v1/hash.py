@@ -21,9 +21,9 @@ parser.add_argument('json')
 class DrawingCreateAPI(flask_restful.Resource):
   def post(self):
     try:
-      drawing_json = json.loads(flask.request.data)
+      drawing_json = json.loads(json.dumps(json.loads(flask.request.data), indent=2, sort_keys=True))
       m = hashlib.md5()
-      m.update(json.dumps(drawing_json, indent=2, sort_keys=True))
+      m.update(str(drawing_json))
       drawing_hash = m.hexdigest()
       drawing_db = model.Drawing.get_by('hash', drawing_hash)
       if not drawing_db:
