@@ -133,8 +133,8 @@ def admin_auth():
 ###############################################################################
 # Stats Stuff
 ###############################################################################
-@app.route('/admin/stats/<string:duration>/')
-@app.route('/admin/stats/')
+@app.route('/stats/<string:duration>/')
+@app.route('/stats/')
 def admin_stats(duration='day'):
   if duration not in ['day', 'week', 'month', 'year']:
     flask.abort(404)

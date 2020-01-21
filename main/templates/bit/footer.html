@@ -11,9 +11,9 @@
     # endif
     <p>
       &copy; {{datetime.today().year}}
-      &mdash; {{config.CONFIG_DB.brand_name}}
+      &mdash; <a href="{{url_for('welcome')}}">{{config.CONFIG_DB.brand_name}}</a>
+      &mdash; <a href="{{url_for('admin_stats')}}"><span class="fa fa-line-chart"></span> Stats for Nerds</a>
       &mdash; <a href="https://github.com/excalidraw/excalidraw-json"><span class="fa fa-github"></span> Source Code</a>
-
     </p>
   </div>
 </footer>
