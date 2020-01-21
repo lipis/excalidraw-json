@@ -10,6 +10,7 @@ from flask_restful import reqparse
 
 from api import helpers
 import model
+import task
 
 from main import api_v1
 
@@ -29,6 +30,7 @@ class DrawingCreateAPI(flask_restful.Resource):
       if not drawing_db:
         drawing_db = model.Drawing(hash=drawing_hash, json=drawing_json)
       drawing_db.put()
+      task.task_calculate_stats(drawing_db.created)
     except (ValueError, AssertionError):
       helpers.make_not_found_exception('Not valid JSON')
 
