@@ -5,18 +5,7 @@
 
 # block content
   <div class="page-header">
-    <div class="pull-right">
-      <a class="btn btn-default" href="{{url_for('drawing_update')}}" title="Add Drawing">
-        <span class="fa fa-plus fa-fw"></span>
-      </a>
-      <a class="btn btn-primary" href="{{url_for('drawing_update', drawing_id=drawing_db.key.id())}}">
-        <span class="fa fa-fw fa-pencil"></span> Edit
-      </a>
-    </div>
-    <h1>
-      {{utils.back_link('Back', 'drawing_list')}}
-      {{title}}
-    </h1>
+    <h1>{{title}}</h1>
   </div>
   <div class="row">
     <div class="col-md-6">
@@ -27,7 +16,7 @@
             <td class="col-xs-11">{{drawing_db.hash}}</td>
           </tr>
           <tr>
-            <th class="text-nowrap col-xs-1">Json</th>
+            <th class="text-nowrap col-xs-1">JSON</th>
             <td class="col-xs-11">{{drawing_db.json}}</td>
           </tr>
         </tbody>
