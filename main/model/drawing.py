@@ -11,7 +11,7 @@ import util
 
 class Drawing(model.Base):
   hash = ndb.StringProperty(required=True)
-  json = ndb.JsonProperty(required=True, compressed=True)
+  json = ndb.JsonProperty(required=True, compressed=True, verbose_name=u'JSON')
 
   FIELDS = {
     'hash': fields.String,
