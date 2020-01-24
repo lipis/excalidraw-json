@@ -5,6 +5,7 @@ from datetime import datetime
 
 import flask
 from google.appengine.api import mail
+from google.appengine.ext import ndb
 from google.appengine.ext import deferred
 
 import config
@@ -212,3 +213,21 @@ def calculate_stats(timestamp, duration='day'):
     deferred.defer(calculate_stats, start, 'month')
   elif duration == 'month':
     deferred.defer(calculate_stats, start, 'year')
+
+
+def drawing_upgrade(drawing_cursor=None):
+  drawing_dbs, drawing_cursor, drawing_more = (
+    model.Drawing.query()
+    .fetch_page(config.DEFAULT_DB_LIMIT, start_cursor=drawing_cursor)
+  )
+
+  updated_dbs = []
+  if drawing_dbs:
+    for drawing_db in drawing_dbs:
+      updated_dbs.append(drawing_db)
+
+  if updated_dbs:
+    ndb.put_multi(updated_dbs)
+
+  if drawing_cursor:
+    deferred.defer(drawing_upgrade, drawing_cursor)

@@ -202,3 +202,14 @@ def admin_stats_calc(when='', year=0, month=0, day=0):
     ), category='success')
     return flask.redirect(flask.url_for('admin_stats'))
   return '%d tasks in %s - %s' % (total, duration, timestamp.strftime('%d %B %Y'))
+
+
+###############################################################################
+# Drawing
+###############################################################################
+@app.route('/admin/drawing/upgrade/')
+@auth.admin_required
+def admin_drawing_upgrade():
+  task.drawing_upgrade()
+  flask.flash('Upgrading Drawing model.', category='success')
+  return flask.redirect(flask.url_for('admin'))

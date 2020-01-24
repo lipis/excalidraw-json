@@ -20,9 +20,17 @@ class Drawing(model.Base):
       return len(json.dumps(self.json))
     return 0
 
+  @ndb.ComputedProperty
+  def elements(self):
+    if self.json and 'elements' in self.json:
+      return len(self.json['elements'])
+    return 0
+
   FIELDS = {
     'hash': fields.String,
     'json': fields.Raw,
+    'size': fields.Integer,
+    'elements': fields.Integer,
   }
 
   FIELDS.update(model.Base.FIELDS)

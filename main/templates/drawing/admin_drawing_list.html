@@ -11,7 +11,8 @@
       <thead>
         <tr class="text-nowrap">
           <th class="col-xs-1">id</th>
-          <th class="col-xs-1">{{utils.order_by_link('size', 'Size')}}</th>
+          <th class="col-xs-1 text-right">{{utils.order_by_link('size', 'Size')}}</th>
+          <th class="col-xs-1 text-right">{{utils.order_by_link('elements', 'Elements')}}</th>
           <th class="col-xs-8">JSON</th>
           <th class="col-xs-2">{{utils.order_by_link('modified', 'Modified')}}<br><small>{{utils.order_by_link('created', 'Created')}}</small></th>
         </tr>
@@ -20,8 +21,15 @@
         # for drawing_db in drawing_dbs
           <tr class="row-link" id="{{drawing_db.key.id()}}" data-href="https://excalidraw.com/?id={{drawing_db.key.id()}}">
             <td>{{drawing_db.key.id()}}</td>
-            <td class="text-right">{{drawing_db.size}}</td>
-            <td class="ellipsis">{{drawing_db.json}}</td>
+            <td class="text-right">
+              {{drawing_db.size}}
+            </td>
+            <td class="text-right">
+              {{drawing_db.elements}}
+            </td>
+            <td class="not-link ellipsis">
+              <a href="{{url_for('api.drawing', drawing_key=drawing_db.key.urlsafe())}}">{{drawing_db.json}}</a>
+            </td>
             <td>
               <time datetime="{{drawing_db.modified}}">
                 {{drawing_db.modified.strftime('%Y-%m-%d')}}
