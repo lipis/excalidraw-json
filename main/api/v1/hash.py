@@ -3,7 +3,6 @@
 from __future__ import absolute_import
 
 import json
-import hashlib
 import flask
 import flask_restful
 
@@ -19,12 +18,7 @@ class DrawingCreateAPI(flask_restful.Resource):
   def post(self):
     try:
       drawing_json = json.loads(json.dumps(json.loads(flask.request.data), indent=2, sort_keys=True))
-      m = hashlib.md5()
-      m.update(str(drawing_json))
-      drawing_hash = m.hexdigest()
-      drawing_db = model.Drawing.get_by('hash', drawing_hash)
-      if not drawing_db:
-        drawing_db = model.Drawing(hash=drawing_hash, json=drawing_json)
+      drawing_db = model.Drawing(json=drawing_json)
       drawing_db.put()
       task.task_calculate_stats(drawing_db.created)
     except (ValueError, AssertionError):
