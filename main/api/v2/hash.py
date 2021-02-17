@@ -27,7 +27,7 @@ class DrawingCreateAPI(flask_restful.Resource):
 
 
 @api_v2.resource('/<int:drawing_id>', endpoint='api.data.id')
-class DrawingHashAPI(flask_restful.Resource):
+class DrawingGetAPI(flask_restful.Resource):
   def get(self, drawing_id):
     drawing_db = model.Drawing.get_by_id(drawing_id)
     if not drawing_db:

@@ -9,4 +9,3 @@ from .profile import *
 from .test import *
 from .welcome import *
 from .drawing import *
-from .sha import *

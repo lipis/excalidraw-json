@@ -32,7 +32,7 @@ class DrawingCreateAPI(flask_restful.Resource):
 
 
 @api_v1.resource('/<int:drawing_id>.json', endpoint='api.id')
-class DrawingHashAPI(flask_restful.Resource):
+class DrawingGetAPI(flask_restful.Resource):
   def get(self, drawing_id):
     drawing_db = model.Drawing.get_by_id(drawing_id)
     if not drawing_db or not drawing_db.json:
