@@ -18,7 +18,7 @@
       </thead>
       <tbody>
         # for drawing_db in drawing_dbs
-          <tr class="row-link" id="{{drawing_db.key.id()}}" data-href="{{url_for('api.data.id', drawing_id=drawing_db.key.id())}}">
+          <tr id="{{drawing_db.key.id()}}">
             <td>{{drawing_db.key.id()}}</td>
             <td class="text-right">
               {{drawing_db.size}}
